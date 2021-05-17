@@ -1,3 +1,5 @@
+@import url(./fonts/fonts.css);
+
 /* Blocks */
 @import url(./blocks/page/page.css);
 @import url(./blocks/task/task.css);
@@ -13,4 +15,6 @@
 @import url(./blocks/task/__incorrect-count/task__incorrect-count.css);
 
 /* Modifiers */
+@import url(./blocks/task/__input/_correct/task__input_correct.css);
+@import url(./blocks/task/__question/_correct/task__question_correct.css);
 @import url(./blocks/task/_correct/task_correct.css);

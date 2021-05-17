@@ -64,9 +64,9 @@ function App() {
       if(e.target.value !== answer) { 
         setIncorrectCount(incorrectCount + 1);
         setResponse(answer);
+        changeTask();
         setTimeout(() => {
           setResponse('');
-          changeTask();
         }, 1000)
       }
     }
@@ -75,11 +75,18 @@ function App() {
   function handleSkipTask() {
     changeTask();
     setIncorrectCount(incorrectCount + 1);
+        setResponse(answer);
+        changeTask();
+        setTimeout(() => {
+          setResponse('');
+        }, 1000)
   }
 
   const changeTask = () => {
     console.log('Вопрос изменен');
-    setTask(tasks, generateNumber(tasks));
+    setTimeout(() => {
+      setTask(tasks, generateNumber(tasks));
+    }, 1000)
   };
 
   function generateNumber(tasks) {
@@ -102,14 +109,14 @@ function App() {
       <main className="content">
         <h1 className="heading">Quiz</h1>
         <div className="task">
-          <h2 className="task__question">{question}</h2>
+          <h2 className={`task__question ${isCorrect ? 'task__question_correct' : ''}`}>{question}</h2>
+          <p className="task__response">{response}</p>
           <form className="task__form" onSubmit={handleSubmit}>
-            <input className="task__input" type="text" onChange={handleChange} onKeyDown={handleKeyDown} />
+            <input className={`task__input ${isCorrect ? 'task__input_correct' : ''}`} type="text" placeholder="Ответ" onChange={handleChange} onKeyDown={handleKeyDown} />
           </form>
-          <p className={`task__response ${isCorrect ? 'task_correct' : ''}`}>{response}</p>
+          <p className="task__correct-count">Правильных ответов: <span>{correctCount}</span></p>
+          <p className="task__incorrect-count">Неправильных ответов: <span>{incorrectCount}</span></p>
           <button className="task__skip" onClick={handleSkipTask}>Пропустить</button>
-          <p className="task__correct-count">Правильных ответов: {correctCount}</p>
-          <p className="task__incorrect-count">Неправильных ответов: {incorrectCount}</p>
         </div>
       </main>
     </div>

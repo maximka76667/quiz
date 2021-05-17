@@ -1,3 +1,9 @@
 .task__correct-count {
-  
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.task__correct-count span {
+  font-size: 20px;
+  font-weight: bold;
 }
