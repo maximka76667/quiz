@@ -1,6 +1,16 @@
 /* Blocks */
+@import url(./blocks/page/page.css);
 @import url(./blocks/task/task.css);
 
-
 /* Elements */
+@import url(./blocks/heading/heading.css);
+@import url(./blocks/task/__question/task__question.css);
+@import url(./blocks/task/__form/task__form.css);
+@import url(./blocks/task/__input/task__input.css);
+@import url(./blocks/task/__response/task__response.css);
+@import url(./blocks/task/__skip/task__skip.css);
+@import url(./blocks/task/__correct-count/task__correct-count.css);
+@import url(./blocks/task/__incorrect-count/task__incorrect-count.css);
+
+/* Modifiers */
 @import url(./blocks/task/_correct/task_correct.css);

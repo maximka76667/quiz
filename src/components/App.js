@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css';
 
 function App() {
 
@@ -8,8 +7,9 @@ function App() {
   const [isCorrect, setIsCorrect] = React.useState(false);
   const [correctCount, setCorrectCount] = React.useState(0);
   const [incorrectCount, setIncorrectCount] = React.useState(0);
+  const [response, setResponse] = React.useState('');
 
-  const questions = [
+  const tasks = [
     {
       question: 'Как вас зовут?',
       answer: 'Максим'
@@ -36,9 +36,9 @@ function App() {
     handleSubmit(e);
   }
 
-  function setTask(questions, i) {
-    setQuestion(questions[i].question);
-    setAnswer(questions[i].answer);
+  function setTask(tasks, i) {
+    setQuestion(tasks[i].question);
+    setAnswer(tasks[i].answer);
   }
 
   function handleSubmit(e) {
@@ -48,15 +48,14 @@ function App() {
         setIsCorrect(true);
         setCorrectCount(correctCount + 1);
         e.target.value = '';
+        setResponse('Правильно');
         setTimeout(() => {
           setIsCorrect(false);
+          setResponse('');
         }, 1000)
       }, 500)
     } else {
       setIsCorrect(false);
-      if(e.keyCode) {
-        console.log(e.keyCode);
-      }
     }
   }
 
@@ -64,46 +63,51 @@ function App() {
     if(e.keyCode === 13) {
       if(e.target.value !== answer) { 
         setIncorrectCount(incorrectCount + 1);
+        setResponse(answer);
+        setTimeout(() => {
+          setResponse('');
+          changeTask();
+        }, 1000)
       }
     }
   }
 
-  function handleMissTask() {
+  function handleSkipTask() {
     changeTask();
     setIncorrectCount(incorrectCount + 1);
   }
 
   const changeTask = () => {
-    setTask(questions, generateNumber(questions));
+    console.log('Вопрос изменен');
+    setTask(tasks, generateNumber(tasks));
   };
 
-  function generateNumber(questions) {
-    return Math.floor(questions.length * Math.random())
+  function generateNumber(tasks) {
+    return Math.floor(tasks.length * Math.random())
   }
 
   React.useEffect(() => {
     changeTask();
-    console.log('Сгенерирован')
+    console.log('Сгенерирован...')
   }, [])
 
   React.useEffect(() => {
     if(isCorrect) {
       changeTask();
-      console.log('Вопрос изменен');
     }
   }, [isCorrect])
 
   return (
-    <div className="App">
-      <header><h1>Quiz</h1></header>
-      <main>
+    <div className="page">
+      <main className="content">
+        <h1 className="heading">Quiz</h1>
         <div className="task">
           <h2 className="task__question">{question}</h2>
           <form className="task__form" onSubmit={handleSubmit}>
             <input className="task__input" type="text" onChange={handleChange} onKeyDown={handleKeyDown} />
           </form>
-          <p className="task__response task_correct">{ isCorrect && 'Правильно!'}</p>
-          <button className="task__miss" onClick={handleMissTask}>Пропустить</button>
+          <p className={`task__response ${isCorrect ? 'task_correct' : ''}`}>{response}</p>
+          <button className="task__skip" onClick={handleSkipTask}>Пропустить</button>
           <p className="task__correct-count">Правильных ответов: {correctCount}</p>
           <p className="task__incorrect-count">Неправильных ответов: {incorrectCount}</p>
         </div>
