@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/blocks/task/_correct/task_correct.css"],"names":[],"mappings":"AAAA,cACE,aACF","file":"main.9c677236.chunk.css","sourcesContent":[".task_correct {\r\n  color: rgb(55, 156, 16);\r\n}"]}
