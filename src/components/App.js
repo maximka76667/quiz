@@ -107,25 +107,25 @@ function App() {
 
   React.useEffect(() => {
     if(incorrectCount >= 10) {
-      window.location.href = "game/lose"
+      window.location.href = "/quiz/game/lose"
     }
   }, [incorrectCount])
 
   React.useEffect(() => {
     if(correctCount >= 10) {
-      window.location.href = "game/win"
+      window.location.href = "/quiz/game/win"
     }
   }, [correctCount])
 
   return (
     <div className="page">
-      <header><a href="/"><h1 className="heading">Quiz</h1></a></header>
+      <header><a href="/quiz/"><h1 className="heading">Quiz</h1></a></header>
       <main className="content">
         <BrowserRouter>
-          <Route exact path="/">
+          <Route exact path="/quiz/">
             <div className="game-menu"><a href="/game">Начать игру</a></div>
           </Route>
-          <Route exact path="/game">
+          <Route exact path="/quiz/game">
             <div className="task">
               <h2 className={`task__question ${isCorrect ? 'task__question_correct' : ''}`}>{question}</h2>
               <p className="task__response">{response}</p>
@@ -137,18 +137,18 @@ function App() {
               <button className="task__skip" onClick={handleSkipTask}>Пропустить</button>
             </div>
           </Route>
-          <Route exact path="/game/lose">
+          <Route exact path="/quiz/game/lose">
             <div className="game-lose">
               <p>Ты проиграл!</p>
               <a href="/game">Начать сначала</a>
               <a href="/">Главное меню</a>
             </div>
           </Route>
-          <Route exact path="/game/win">
+          <Route exact path="/quiz/game/win">
             <div className="game-win">
               <p>Ты выиграл!</p>
-              <a href="/game">Начать сначала</a>
-              <a href="/">Главное меню</a>
+              <a href="/quiz/game">Начать сначала</a>
+              <a href="/quiz/">Главное меню</a>
             </div>
           </Route>
         </BrowserRouter>
