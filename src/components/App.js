@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
 
@@ -104,20 +105,53 @@ function App() {
     }
   }, [isCorrect])
 
+  React.useEffect(() => {
+    if(incorrectCount >= 10) {
+      window.location.href = "game/lose"
+    }
+  }, [incorrectCount])
+
+  React.useEffect(() => {
+    if(correctCount >= 10) {
+      window.location.href = "game/win"
+    }
+  }, [correctCount])
+
   return (
     <div className="page">
+      <header><a href="/"><h1 className="heading">Quiz</h1></a></header>
       <main className="content">
-        <h1 className="heading">Quiz</h1>
-        <div className="task">
-          <h2 className={`task__question ${isCorrect ? 'task__question_correct' : ''}`}>{question}</h2>
-          <p className="task__response">{response}</p>
-          <form className="task__form" onSubmit={handleSubmit}>
-            <input className={`task__input ${isCorrect ? 'task__input_correct' : ''}`} type="text" placeholder="Ответ" onChange={handleChange} onKeyDown={handleKeyDown} />
-          </form>
-          <p className="task__correct-count">Правильных ответов: <span>{correctCount}</span></p>
-          <p className="task__incorrect-count">Неправильных ответов: <span>{incorrectCount}</span></p>
-          <button className="task__skip" onClick={handleSkipTask}>Пропустить</button>
-        </div>
+        <BrowserRouter>
+          <Route exact path="/">
+            <div className="game-menu"><a href="/game">Начать игру</a></div>
+          </Route>
+          <Route exact path="/game">
+            <div className="task">
+              <h2 className={`task__question ${isCorrect ? 'task__question_correct' : ''}`}>{question}</h2>
+              <p className="task__response">{response}</p>
+              <form className="task__form" onSubmit={handleSubmit}>
+                <input className={`task__input ${isCorrect ? 'task__input_correct' : ''}`} type="text" placeholder="Ответ" onChange={handleChange} onKeyDown={handleKeyDown} />
+              </form>
+              <p className="task__correct-count">Правильных ответов: <span>{correctCount}</span></p>
+              <p className="task__incorrect-count">Неправильных ответов: <span>{incorrectCount}</span></p>
+              <button className="task__skip" onClick={handleSkipTask}>Пропустить</button>
+            </div>
+          </Route>
+          <Route exact path="/game/lose">
+            <div className="game-lose">
+              <p>Ты проиграл!</p>
+              <a href="/game">Начать сначала</a>
+              <a href="/">Главное меню</a>
+            </div>
+          </Route>
+          <Route exact path="/game/win">
+            <div className="game-win">
+              <p>Ты выиграл!</p>
+              <a href="/game">Начать сначала</a>
+              <a href="/">Главное меню</a>
+            </div>
+          </Route>
+        </BrowserRouter>
       </main>
     </div>
   );
