@@ -123,7 +123,7 @@ function App() {
       <main className="content">
         <BrowserRouter>
           <Route exact path="/quiz/">
-            <div className="game-menu"><a href="/game">Начать игру</a></div>
+            <div className="game-menu"><a href="/quiz/game">Начать игру</a></div>
           </Route>
           <Route exact path="/quiz/game">
             <div className="task">
@@ -140,8 +140,8 @@ function App() {
           <Route exact path="/quiz/game/lose">
             <div className="game-lose">
               <p>Ты проиграл!</p>
-              <a href="/game">Начать сначала</a>
-              <a href="/">Главное меню</a>
+              <a href="/quiz/game">Начать сначала</a>
+              <a href="/quiz/">Главное меню</a>
             </div>
           </Route>
           <Route exact path="/quiz/game/win">
