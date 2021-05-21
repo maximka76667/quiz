@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/quiz/static/css/main.f55ef651.chunk.css",
-    "main.js": "/quiz/static/js/main.51e3760b.chunk.js",
-    "main.js.map": "/quiz/static/js/main.51e3760b.chunk.js.map",
+    "main.js": "/quiz/static/js/main.5afb25b9.chunk.js",
+    "main.js.map": "/quiz/static/js/main.5afb25b9.chunk.js.map",
     "runtime-main.js": "/quiz/static/js/runtime-main.0fa259cc.js",
     "runtime-main.js.map": "/quiz/static/js/runtime-main.0fa259cc.js.map",
-    "static/js/2.48510124.chunk.js": "/quiz/static/js/2.48510124.chunk.js",
-    "static/js/2.48510124.chunk.js.map": "/quiz/static/js/2.48510124.chunk.js.map",
+    "static/js/2.1bea02d1.chunk.js": "/quiz/static/js/2.1bea02d1.chunk.js",
+    "static/js/2.1bea02d1.chunk.js.map": "/quiz/static/js/2.1bea02d1.chunk.js.map",
     "static/js/3.44438c54.chunk.js": "/quiz/static/js/3.44438c54.chunk.js",
     "static/js/3.44438c54.chunk.js.map": "/quiz/static/js/3.44438c54.chunk.js.map",
     "index.html": "/quiz/index.html",
     "static/css/main.f55ef651.chunk.css.map": "/quiz/static/css/main.f55ef651.chunk.css.map",
-    "static/js/2.48510124.chunk.js.LICENSE.txt": "/quiz/static/js/2.48510124.chunk.js.LICENSE.txt",
+    "static/js/2.1bea02d1.chunk.js.LICENSE.txt": "/quiz/static/js/2.1bea02d1.chunk.js.LICENSE.txt",
     "static/media/index.css": "/quiz/static/media/Montserrat-Regular.3cd78665.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.0fa259cc.js",
-    "static/js/2.48510124.chunk.js",
+    "static/js/2.1bea02d1.chunk.js",
     "static/css/main.f55ef651.chunk.css",
-    "static/js/main.51e3760b.chunk.js"
+    "static/js/main.5afb25b9.chunk.js"
   ]
 }
