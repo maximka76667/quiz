@@ -109,12 +109,12 @@ function App() {
 
   React.useEffect(() => {
     if(incorrectCount >= 3 && correctCount < 3) {
-      window.location.href = "#/quiz/game/result";
+      window.location.href = "/#/game/result";
       setCorrectCount(0);
       setIncorrectCount(0);
       setResult(false);
     } else if(correctCount >= 3 && incorrectCount < 3) {
-      window.location.href = "#/game/result";
+      window.location.href = "/#/game/result";
       setCorrectCount(0);
       setIncorrectCount(0);
       setResult(true);
@@ -124,7 +124,7 @@ function App() {
   return (
     <div className="page">
       <header>
-        <Link to="/">
+        <Link to="#">
           <h1 className="heading">Quiz</h1>
         </Link>
       </header>
@@ -133,7 +133,7 @@ function App() {
           <Route exact path="/">
             <div className="game-menu">
               <Link to="/game">Начать игру</Link>
-              </div>
+            </div>
           </Route>
           <Route exact path="/game">
             <div className="task">
