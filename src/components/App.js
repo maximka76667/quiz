@@ -124,7 +124,7 @@ function App() {
   return (
     <div className="page">
       <header>
-        <Link to="#">
+        <Link to="/">
           <h1 className="heading">Quiz</h1>
         </Link>
       </header>
