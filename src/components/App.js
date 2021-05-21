@@ -5,6 +5,7 @@ import Result from './Result'
 function App() {
 
   const [question, setQuestion] = React.useState('');
+  const [userAnswer, setUserAnswer] = React.useState('');
   const [answer, setAnswer] = React.useState('');
   const [isCorrect, setIsCorrect] = React.useState(false);
   const [correctCount, setCorrectCount] = React.useState(0);
@@ -32,10 +33,15 @@ function App() {
     {
       question: 'Рост?',
       answer: '180'
+    },
+    {
+      question: 'Столица Казахстана?',
+      answer: 'Нур-Султан'
     }
   ]
 
   function handleChange(e) {
+    setUserAnswer(e.target.value);
     handleSubmit(e);
   }
 
@@ -47,16 +53,14 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     if(e.target.value === answer) {
+      setIsCorrect(true);
+      setCorrectCount(correctCount + 1);
+      setResponse('Правильно');
       setTimeout(() => {
-        setIsCorrect(true);
-        setCorrectCount(correctCount + 1);
-        e.target.value = '';
-        setResponse('Правильно');
-        setTimeout(() => {
-          setIsCorrect(false);
-          setResponse('');
-        }, 1000)
-      }, 500)
+        setIsCorrect(false);
+        setUserAnswer('');
+        setResponse('');
+      }, 1000)
     } else {
       setIsCorrect(false);
     }
@@ -67,8 +71,8 @@ function App() {
       if(e.target.value !== answer) { 
         setIncorrectCount(incorrectCount + 1);
         setResponse(answer);
-        changeTask();
         setTimeout(() => {
+          changeTask();
           setResponse('');
         }, 1000)
       }
@@ -78,11 +82,11 @@ function App() {
   function handleSkipTask() {
     changeTask();
     setIncorrectCount(incorrectCount + 1);
-        setResponse(answer);
-        changeTask();
-        setTimeout(() => {
-          setResponse('');
-        }, 1000)
+    setResponse(answer);
+    changeTask();
+    setTimeout(() => {
+      setResponse('');
+    }, 1000)
   }
 
   const changeTask = () => {
@@ -108,17 +112,19 @@ function App() {
   }, [isCorrect])
 
   React.useEffect(() => {
-    if(incorrectCount >= 3 && correctCount < 3) {
+    setTimeout(() => {
+      if(incorrectCount >= 3 && correctCount < 3) {
       window.location.href = "/quiz/#/game/result";
       setCorrectCount(0);
       setIncorrectCount(0);
       setResult(false);
-    } else if(correctCount >= 3 && incorrectCount < 3) {
+      } else if(correctCount >= 3 && incorrectCount < 3) {
       window.location.href = "/quiz/#/game/result";
       setCorrectCount(0);
       setIncorrectCount(0);
       setResult(true);
-    }
+      }
+    }, 1000)
   }, [incorrectCount, correctCount])
 
   return (
@@ -140,7 +146,7 @@ function App() {
               <h2 className={`task__question ${isCorrect ? 'task__question_correct' : ''}`}>{question}</h2>
               <p className="task__response">{response}</p>
               <form className="task__form" onSubmit={handleSubmit}>
-                <input className={`task__input ${isCorrect ? 'task__input_correct' : ''}`} type="text" placeholder="Ответ" onChange={handleChange} onKeyDown={handleKeyDown} />
+                <input className={`task__input ${isCorrect ? 'task__input_correct' : ''}`} type="text" placeholder="Ответ" onChange={handleChange} onKeyDown={handleKeyDown} value={userAnswer} />
               </form>
               <p className="task__correct-count">Правильных ответов: <span>{correctCount}</span></p>
               <p className="task__incorrect-count">Неправильных ответов: <span>{incorrectCount}</span></p>

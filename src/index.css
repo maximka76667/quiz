@@ -3,6 +3,8 @@
 /* Blocks */
 @import url(./blocks/page/page.css);
 @import url(./blocks/task/task.css);
+@import url(./blocks/game-menu/game-menu.css);
+@import url(./blocks/result/result.css);
 
 /* Elements */
 @import url(./blocks/heading/heading.css);
