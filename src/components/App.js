@@ -114,7 +114,7 @@ function App() {
       setIncorrectCount(0);
       setResult(false);
     } else if(correctCount >= 3 && incorrectCount < 3) {
-      window.location.href = "#/quiz/game/result";
+      window.location.href = "#/game/result";
       setCorrectCount(0);
       setIncorrectCount(0);
       setResult(true);
